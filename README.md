@@ -1,9 +1,7 @@
-# starter express app template
+# Lab 5: Blog api
 
-* node with babel
-* expressjs
-* airbnb eslint rules
+## Description
+This is the API I created for the Redux blog I created in Lab 4.
 
-Procfile set up to run on [heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs#deploy-the-app)
-
-
+## Sources
+* [Mongoose CRUD](https://coursework.vschool.io/mongoose-crud/)

@@ -1,17 +1,72 @@
 import Post from '../models/post_model';
 
+// The controller functions used to GET, POST, PUT, and DELETE data in my mongodb
+// database. I used this url to familiarize myslef with Mongoose CRUD functions:
+// https://coursework.vschool.io/mongoose-crud/
+
 export const createPost = (req, res) => {
-  res.send('post should be created here');
+  const post = new Post();
+  console.log(req.body);
+  post.title = req.body.title;
+  post.tags = req.body.tags;
+  post.content = req.body.content;
+  post.cover_url = req.body.cover_url;
+  post.save()
+    .then((response) => {
+      console.log('should have created?');
+      console.log(response);
+      res.send(response);
+    })
+    .catch((err) => {
+      if (err) {
+        res.sendStatus(500);
+      }
+    });
 };
+
 export const getPosts = (req, res) => {
-  res.send('posts should be returned');
+  Post.find({}).then((data) => {
+    res.send(data);
+  })
+    .catch((err) => {
+      console.log(err);
+    });
 };
+
 export const getPost = (req, res) => {
-  res.send('single post looked up');
+  Post.findOne({ _id: req.params.id })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
 };
+
 export const deletePost = (req, res) => {
-  res.send('delete a post here');
+  Post.findByIdAndRemove(req.params.id)
+    .then((response) => {
+      console.log(response);
+      res.send(response);
+    })
+    .catch((err) => {
+      if (err) {
+        res.sendStatus(500);
+      }
+    });
 };
+
 export const updatePost = (req, res) => {
-  res.send('update a post here');
+  Post.findByIdAndUpdate(req.params.id, {
+    title: req.params.post.title,
+    content: req.params.post.content,
+    tags: req.params.post.tags,
+    cover_url: req.params.post.cover_url,
+  })
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.status(500).json({ err });
+    });
 };
