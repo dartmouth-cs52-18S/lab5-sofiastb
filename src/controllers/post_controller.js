@@ -6,15 +6,12 @@ import Post from '../models/post_model';
 
 export const createPost = (req, res) => {
   const post = new Post();
-  console.log(req.body);
   post.title = req.body.title;
   post.tags = req.body.tags;
   post.content = req.body.content;
   post.cover_url = req.body.cover_url;
   post.save()
     .then((response) => {
-      console.log('should have created?');
-      console.log(response);
       res.send(response);
     })
     .catch((err) => {
@@ -46,7 +43,6 @@ export const getPost = (req, res) => {
 export const deletePost = (req, res) => {
   Post.findByIdAndRemove(req.params.id)
     .then((response) => {
-      console.log(response);
       res.send(response);
     })
     .catch((err) => {
@@ -56,13 +52,14 @@ export const deletePost = (req, res) => {
     });
 };
 
+// used this StackOverflow post to figure out the { new: true } trick: https://stackoverflow.com/questions/32811510/mongoose-findoneandupdate-doesnt-return-updated-document
 export const updatePost = (req, res) => {
   Post.findByIdAndUpdate(req.params.id, {
-    title: req.params.post.title,
-    content: req.params.post.content,
-    tags: req.params.post.tags,
-    cover_url: req.params.post.cover_url,
-  })
+    title: req.body.title,
+    content: req.body.content,
+    tags: req.body.tags,
+    cover_url: req.body.cover_url,
+  }, { new: true })
     .then((result) => {
       res.send(result);
     })
