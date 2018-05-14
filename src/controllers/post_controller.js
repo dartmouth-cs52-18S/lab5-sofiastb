@@ -1,24 +1,33 @@
 import Post from '../models/post_model';
+import User from '../models/user_model';
 
 // The controller functions used to GET, POST, PUT, and DELETE data in my mongodb
 // database. I used this url to familiarize myslef with Mongoose CRUD functions:
 // https://coursework.vschool.io/mongoose-crud/
 
 export const createPost = (req, res) => {
-  const post = new Post();
-  post.title = req.body.title;
-  post.tags = req.body.tags;
-  post.content = req.body.content;
-  post.cover_url = req.body.cover_url;
-  post.author = req.body.author;
-  post.save()
-    .then((response) => {
-      res.send(response);
+  User.findOne({ _id: req.user.id })
+    .then((data) => {
+      const post = new Post();
+      post.title = req.body.title;
+      post.tags = req.body.tags;
+      post.content = req.body.content;
+      post.cover_url = req.body.cover_url;
+      post.author = req.user.id;
+      post.username = data.username;
+      post.save()
+        .then((response) => {
+          console.log(response);
+          res.send(response);
+        })
+        .catch((err) => {
+          if (err) {
+            res.sendStatus(500);
+          }
+        });
     })
     .catch((err) => {
-      if (err) {
-        res.sendStatus(500);
-      }
+      res.send(err);
     });
 };
 

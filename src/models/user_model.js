@@ -12,6 +12,9 @@ const UserSchema = new Schema({
   password: {
     type: String,
   },
+  username: {
+    type: String,
+  },
 }, {
   toJSON: {
     virtuals: true,

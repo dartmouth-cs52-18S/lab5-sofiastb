@@ -15,19 +15,21 @@ export const signin = (req, res, next) => {
 };
 
 export const signup = (req, res, next) => {
-  const { email, password } = req.body;
+  console.log('signing up');
+  const { email, password, username } = req.body;
 
-  if (!email || !password) {
-    return res.status(422).send('You must provide email and password');
+  if (!email || !password || !username) {
+    return res.status(422).send('You must provide email, username, and password');
   }
 
   User.findOne({ email })
     .then((data) => {
+      console.log(data);
       if (data == null) {
         const user = new User();
         user.email = email;
+        user.username = username;
         user.password = password;
-        console.log(password);
         user.save()
           .then((response) => {
             res.send({ token: tokenForUser(user) });
@@ -38,11 +40,11 @@ export const signup = (req, res, next) => {
             }
           });
       } else {
-        res.sendStatus(500);
+        res.status(422).send('User already exists');
       }
     })
     .catch((err) => {
-      res.status(422).send('User already exists');
+      res.sendStatus(500);
     });
 
   return next;
