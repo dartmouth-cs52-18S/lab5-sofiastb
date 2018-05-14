@@ -10,6 +10,7 @@ export const createPost = (req, res) => {
   post.tags = req.body.tags;
   post.content = req.body.content;
   post.cover_url = req.body.cover_url;
+  post.author = req.body.author;
   post.save()
     .then((response) => {
       res.send(response);

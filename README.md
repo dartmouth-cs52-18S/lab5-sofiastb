@@ -1,10 +1,10 @@
-# Lab 5: Blog API 🌁
+# Lab 5: Blog API + Auth 🌁
 
 ## Author 👩🏻‍💻
 Sofia Stanescu-Bellu
 
 ## Description
-This is the API I created for the Redux blog I created in Lab 4. The newly hosted website that points to the API can be found here: [http://fancyreduxblogapi.surge.sh/](http://fancyreduxblogapi.surge.sh/). The URL to API hosted on Heroku can be found here: [https://lab5api.herokuapp.com/](https://lab5api.herokuapp.com/). 
+This is the API I created for the Redux blog I created in Lab 4. The newly hosted website that points to the API can be found here: [http://fancyreduxblogapi.surge.sh/](http://fancyreduxblogapi.surge.sh/). The URL to API hosted on Heroku can be found here: [https://lab5api.herokuapp.com/](https://lab5api.herokuapp.com/).
 
 ### What worked
 I think this lab went relatively smoothly. There weren't any major issues with the API or MongoDB, partly due to SA7 which really helped clarify API and Database concepts for me and partly due to my current DALI project, where I build an API for the REX Real Estate valuation app. Overall, the concepts behind an API seem pretty straightforward for me and I enjoyed working on this lab.
@@ -16,3 +16,5 @@ Some of my structre in my Lab 4 code for displaying an individual post had to be
 * DALI for my API knowledge.
 * [Mongoose CRUD](https://coursework.vschool.io/mongoose-crud/)
 * [Mongoose `findOneAndUpdate` doesn't return updated document](https://stackoverflow.com/questions/32811510/mongoose-findoneandupdate-doesnt-return-updated-document)
+* [node.bcrypt.js](https://github.com/kelektiv/node.bcrypt.js/)
+* [Password Authentication with Mongoose Part 1](https://www.mongodb.com/blog/post/password-authentication-with-mongoose-part-1)
